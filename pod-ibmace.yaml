@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ibmace
+  labels:
+    app: ibmace
+  namespace: default
+spec:
+  containers:
+    - name: ibmace
+      image: ibmcom/ace-mq
+      ports:
+        - name: ace-port
+          containerPort: 7600
+          protocol: TCP
+        - name: ace-admin-port
+          containerPort: 7800
+          protocol: TCP
+        - name: ace-ssl-port
+          containerPort: 7843
+          protocol: TCP
+        - name: mq-mgr-port
+          containerPort: 1414
+          protocol: TCP
+      env: 
+        - name: LICENSE
+          value: "accept"
+        - name: MQ_QMGR_NAME
+          value: "QMGR"
+        - name: ACE_SERVER_NAME
+          value: "ACESERVER"
+
+	
+            
+    
